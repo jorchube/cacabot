@@ -14,7 +14,7 @@ def test_bot(auth_token):
     return Cacabot(auth_token=auth_token)
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def mock_responses():
     with responses.RequestsMock() as r:
         yield r
