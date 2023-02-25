@@ -18,6 +18,15 @@ class Cacabot:
     def _get_cacas_from_updates(self, updates) -> list[Caca]:
         cacas = list()
         for update in updates:
+
+            if not self._is_a_text_message(update):
+                continue
+
+            update_text = update["message"]["text"]
+
+            if update_text != "💩":
+                continue
+
             caca = Caca(
                 update_offset=update["update_id"],
                 chat_id=str(update["message"]["chat"]["id"]),
@@ -28,3 +37,6 @@ class Cacabot:
             cacas.append(caca)
 
         return cacas
+
+    def _is_a_text_message(self, update):
+        return "message" in update and "text" in update["message"]
