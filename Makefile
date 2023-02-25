@@ -2,7 +2,7 @@ setup-dev-environment:
 	pipenv install --dev
 
 test:
-	pytest .
+	pytest . -vv
 
 linting:
 	black .
