@@ -1,5 +1,6 @@
 import requests
 from src.caca import Caca
+from src.caca_factory import CacaFactory
 
 
 class Cacabot:
@@ -23,19 +24,10 @@ class Cacabot:
             if not self._is_valid_caca(update):
                 continue
 
-            caca = self._create_caca_from_update(update)
+            caca = CacaFactory.create_caca_from_valid_update(update)
             cacas.append(caca)
 
         return cacas
-
-    def _create_caca_from_update(self, update):
-        return Caca(
-            update_offset=update["update_id"],
-            chat_id=str(update["message"]["chat"]["id"]),
-            chat_name=str(update["message"]["chat"]["title"]),
-            chat_member_name=str(update["message"]["from"]["first_name"]),
-            chat_member_id=str(update["message"]["from"]["id"]),
-        )
 
     def _is_a_text_message(self, update):
         return "message" in update and "text" in update["message"]
