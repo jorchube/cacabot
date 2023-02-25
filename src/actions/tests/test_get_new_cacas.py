@@ -53,6 +53,7 @@ class TestGetNewCacas:
         caca = new_cacas[0]
 
         assert caca.update_offset == 803079895
+        assert caca.datetime.isoformat() == "2023-02-25T14:17:06+01:00"
         assert caca.chat_id == "-859646311"
         assert caca.chat_name == "AwesomeGroup"
         assert caca.chat_member_id == "5963758344"
@@ -115,6 +116,7 @@ class TestGetNewCacas:
         caca = new_cacas[0]
 
         assert caca.update_offset == 803079895
+        assert caca.datetime.isoformat() == "2023-02-25T14:17:06+01:00"
         assert caca.chat_id == "-859646311"
         assert caca.chat_name == "AwesomeGroup"
         assert caca.chat_member_id == "5963758344"
@@ -122,6 +124,7 @@ class TestGetNewCacas:
 
         caca = new_cacas[1]
         assert caca.update_offset == 803079896
+        assert caca.datetime.isoformat() == "2023-02-25T14:17:08+01:00"
         assert caca.chat_id == "-859646311"
         assert caca.chat_name == "AwesomeGroup"
         assert caca.chat_member_id == "9999999999"
