@@ -1,4 +1,4 @@
-from src.use_cases import get_new_cacas
+from src.actions import get_new_cacas
 
 
 class TestGetNewCacas:
