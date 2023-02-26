@@ -52,10 +52,11 @@ class TestGetNewCacas:
         assert len(new_cacas) == 1
         caca = new_cacas[0]
 
+        assert caca.update_id == 803079895
         assert caca.datetime.isoformat() == "2023-02-25T14:17:06+01:00"
-        assert caca.chat_id == "-859646311"
+        assert caca.chat_id == -859646311
         assert caca.chat_name == "AwesomeGroup"
-        assert caca.chat_member_id == "5963758344"
+        assert caca.chat_member_id == 5963758344
         assert caca.chat_member_name == "Pepa"
 
     def test_it_gets_new_cacas_for_many_new_updates(
@@ -114,17 +115,19 @@ class TestGetNewCacas:
         assert len(new_cacas) == 2
         caca = new_cacas[0]
 
+        assert caca.update_id == 803079895
         assert caca.datetime.isoformat() == "2023-02-25T14:17:06+01:00"
-        assert caca.chat_id == "-859646311"
+        assert caca.chat_id == -859646311
         assert caca.chat_name == "AwesomeGroup"
-        assert caca.chat_member_id == "5963758344"
+        assert caca.chat_member_id == 5963758344
         assert caca.chat_member_name == "Pepa"
 
         caca = new_cacas[1]
+        assert caca.update_id == 803079896
         assert caca.datetime.isoformat() == "2023-02-25T14:17:08+01:00"
-        assert caca.chat_id == "-859646311"
+        assert caca.chat_id == -859646311
         assert caca.chat_name == "AwesomeGroup"
-        assert caca.chat_member_id == "9999999999"
+        assert caca.chat_member_id == 9999999999
         assert caca.chat_member_name == "Fulanito"
 
     def test_it_gets_new_cacas_for_many_new_updates_ignoring_invalid_text_messages(

@@ -13,8 +13,9 @@ class TestRepository:
     @pytest.fixture
     def caca(self):
         return Caca(
-            chat_id="-123",
-            chat_member_id="789",
+            update_id=33,
+            chat_id=-123,
+            chat_member_id=789,
             chat_member_name="John Doe",
             chat_name="SupahChat",
             datetime=datetime(2023, 2, 25, 13, 33, tzinfo=ZoneInfo("Europe/Madrid"))
