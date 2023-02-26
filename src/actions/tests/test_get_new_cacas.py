@@ -130,7 +130,7 @@ class TestGetNewCacas:
         assert caca.chat_member_id == "9999999999"
         assert caca.chat_member_name == "Fulanito"
 
-    def test_it_gets_new_cacas_for_many_new_updates_ingoning_invalid_cacas(
+    def test_it_gets_new_cacas_for_many_new_updates_ignoring_invalid_text_messages(
         self, mock_responses, auth_token, test_bot
     ):
         mock_responses.post(
@@ -185,7 +185,7 @@ class TestGetNewCacas:
 
         assert len(new_cacas) == 0
 
-    def test_it_gets_new_cacas_for_many_new_updates_ingoning_non_text_message_updates(
+    def test_it_gets_new_cacas_for_many_new_updates_ignoring_non_text_message_updates(
         self, mock_responses, auth_token, test_bot
     ):
         mock_responses.post(
