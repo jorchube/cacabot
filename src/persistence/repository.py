@@ -27,7 +27,7 @@ class Repository:
         self._cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS cacas(
-                update_id,
+                update_id PRIMARY KEY,
                 timestamp,
                 chat_id,
                 chat_name,
@@ -36,7 +36,17 @@ class Repository:
             """
         )
 
-    def store_caca(self, caca: Caca) -> None:
+    def store_or_update_caca(self, caca: Caca) -> None:
+        update_id = caca.update_id
+
+        if self._is_update_id_already_stored(update_id):
+            self._update_caca(caca)
+        else:
+            self._insert_caca(caca)
+
+        self._connection.commit()
+
+    def _insert_caca(self, caca):
         update_id = caca.update_id
         timestamp = caca.datetime.timestamp()
         chat_id = caca.chat_id
@@ -57,7 +67,39 @@ class Repository:
             )
             """
         )
-        self._connection.commit()
+
+    def _update_caca(self, caca):
+        update_id = caca.update_id
+        timestamp = caca.datetime.timestamp()
+        chat_id = caca.chat_id
+        chat_name = caca.chat_name
+        chat_member_id = caca.chat_member_id
+        chat_member_name = caca.chat_member_name
+
+        self._cursor.execute(
+            f"""
+            UPDATE cacas
+            SET
+                timestamp = {timestamp},
+                chat_id = {chat_id},
+                chat_name = '{chat_name}',
+                chat_member_id = {chat_member_id},
+                chat_member_name = '{chat_member_name}'
+            WHERE
+                update_id = {update_id}
+            """
+        )
+
+    def _is_update_id_already_stored(self, update_id) -> bool:
+        results = self._cursor.execute(
+            f"""
+            SELECT 1
+            FROM cacas
+            WHERE update_id={update_id}
+            """
+        ).fetchall()
+
+        return len(results) > 0
 
     def get_all_cacas(self) -> list[Caca]:
         results = self._cursor.execute(

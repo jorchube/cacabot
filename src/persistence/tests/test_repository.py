@@ -22,7 +22,18 @@ class TestRepository:
         )
 
     def test_it_stores_and_retrieves_one_caca(self, in_memory_repository, caca):
-        in_memory_repository.store_caca(caca)
+        in_memory_repository.store_or_update_caca(caca)
+
+        cacas = in_memory_repository.get_all_cacas()
+
+        assert len(cacas) == 1
+        assert cacas[0] == caca
+
+    def test_it_updates_a_caca_with_an_already_stored_update_id(self, in_memory_repository, caca):
+        in_memory_repository.store_or_update_caca(caca)
+
+        caca.chat_member_name = "Another name"
+        in_memory_repository.store_or_update_caca(caca)
 
         cacas = in_memory_repository.get_all_cacas()
 
