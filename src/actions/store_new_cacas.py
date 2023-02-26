@@ -1,3 +1,4 @@
+import logging
 from caca import Caca
 from persistence.repository import Repository
 
@@ -7,3 +8,5 @@ def do(cacas: list[Caca]) -> None:
 
     for caca in cacas:
         repository.store_or_update_caca(caca)
+
+    logging.info(f"Processed {len(cacas)} cacas")

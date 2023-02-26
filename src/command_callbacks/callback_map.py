@@ -8,7 +8,9 @@ class CommandsMap:
     @classmethod
     def get_callback_for_command(self, command):
         null_callback = lambda command: None
-        if command.command not in self._map:
-            return null_callback
 
-        return self._map[command.command]
+        for key, value in self._map.items():
+            if command.command.startswith(key):
+                return value
+
+        return null_callback

@@ -23,7 +23,7 @@ class TestCuentacacasCallback:
         command = Command(update_id=123, chat_id=-123, command="/cuentacacas")
         result = cuentacacas_callback.callback(command)
 
-        assert result == {}
+        assert result == None
 
     def test_it_counts_cacas_for_one_chat_member_in_the_repository(self, in_memory_repository, caca):
         in_memory_repository.store_or_update_caca(caca)
@@ -31,12 +31,11 @@ class TestCuentacacasCallback:
         command = Command(update_id=123, chat_id=-123, command="/cuentacacas")
         result = cuentacacas_callback.callback(command)
 
-        assert result == {
-            789: {
-                "name": "John Doe",
-                "count": 1
-            }
-        }
+        assert result == (
+"""Total de cacas:
+
+John Doe: 1"""
+)
 
     def test_it_counts_many_cacas_for_many_chat_member_in_the_repository(self, in_memory_repository, caca):
         in_memory_repository.store_or_update_caca(caca)
@@ -52,16 +51,12 @@ class TestCuentacacasCallback:
         command = Command(update_id=123, chat_id=-123, command="/cuentacacas")
         result = cuentacacas_callback.callback(command)
 
-        assert result == {
-            789: {
-                "name": "John Doe",
-                "count": 2
-            },
-            9876654: {
-                "name": "Jane Doe",
-                "count": 1
-            }
-        }
+        assert result == (
+"""Total de cacas:
+
+John Doe: 2
+Jane Doe: 1"""
+)
 
     def test_it_counts_many_cacas_for_one_chat_member_in_the_repository_given_a_chat_member_id_using_the_last_chat_member_name(self, in_memory_repository, caca):
         in_memory_repository.store_or_update_caca(caca)
@@ -76,12 +71,11 @@ class TestCuentacacasCallback:
         command = Command(update_id=123, chat_id=-123, command="/cuentacacas")
         result = cuentacacas_callback.callback(command)
 
-        assert result == {
-            789: {
-                "name": "Jane Doe",
-                "count": 3
-            }
-        }
+        assert result == (
+"""Total de cacas:
+
+Jane Doe: 3"""
+)
 
     def test_it_counts_cacas_only_for_the_chat_id_specified_in_the_given_command(self, in_memory_repository, caca):
         in_memory_repository.store_or_update_caca(caca)
@@ -93,9 +87,8 @@ class TestCuentacacasCallback:
         command = Command(update_id=123, chat_id=-123, command="/cuentacacas")
         result = cuentacacas_callback.callback(command)
 
-        assert result == {
-            789: {
-                "name": "John Doe",
-                "count": 1
-            }
-        }
+        assert result == (
+"""Total de cacas:
+
+John Doe: 1"""
+)

@@ -1,5 +1,5 @@
-from datetime import datetime
 import sqlite3
+import logging
 
 from caca import Caca
 from caca_factory import CacaFactory
@@ -26,7 +26,7 @@ class Repository:
         self._create_commands_table()
 
     def _create_cacas_table(self):
-        self._cursor.execute(
+        self._execute_sql(
             """
             CREATE TABLE IF NOT EXISTS cacas(
                 update_id PRIMARY KEY,
@@ -39,7 +39,7 @@ class Repository:
         )
 
     def _create_commands_table(self):
-        self._cursor.execute(
+        self._execute_sql(
             """
             CREATE TABLE IF NOT EXISTS commands(
                 update_id PRIMARY KEY,
@@ -66,7 +66,7 @@ class Repository:
         chat_member_id = caca.chat_member_id
         chat_member_name = caca.chat_member_name
 
-        self._cursor.execute(
+        self._execute_sql(
             f"""
             INSERT INTO cacas(update_id, timestamp, chat_id, chat_name, chat_member_id, chat_member_name)
             VALUES (
@@ -88,7 +88,7 @@ class Repository:
         chat_member_id = caca.chat_member_id
         chat_member_name = caca.chat_member_name
 
-        self._cursor.execute(
+        self._execute_sql(
             f"""
             UPDATE cacas
             SET
@@ -103,51 +103,50 @@ class Repository:
         )
 
     def _is_update_id_already_stored(self, update_id) -> bool:
-        results = self._cursor.execute(
+        results = self._execute_sql(
             f"""
             SELECT 1
             FROM cacas
             WHERE update_id={update_id}
             """
-        ).fetchall()
+        )
 
         return len(results) > 0
 
     def get_all_cacas(self) -> list[Caca]:
-        results = self._cursor.execute(
+        results = self._execute_sql(
             """
             SELECT update_id, timestamp, chat_id, chat_name, chat_member_id, chat_member_name
             FROM cacas
             """
-        ).fetchall()
+        )
 
         return [CacaFactory.caca_from_repository_result(result) for result in results]
 
     def get_all_cacas_for_chat(self, chat_id) -> list[Caca]:
-        results = self._cursor.execute(
+        results = self._execute_sql(
             f"""
             SELECT update_id, timestamp, chat_id, chat_name, chat_member_id, chat_member_name
             FROM cacas
             WHERE chat_id={chat_id}
             """
-        ).fetchall()
+        )
 
         return [CacaFactory.caca_from_repository_result(result) for result in results]
 
     def is_command_stored(self, command: Command):
         update_id = command.update_id
-        results = self._cursor.execute(
+        results = self._execute_sql(
             f"""
             SELECT 1
             FROM commands
             WHERE update_id={update_id}
             """
-        ).fetchall()
-
+        )
         return len(results) > 0
 
     def store_command(self, command: Command):
-        self._cursor.execute(
+        self._execute_sql(
             f"""
             INSERT INTO commands(update_id, chat_id, command)
             VALUES (
@@ -158,3 +157,8 @@ class Repository:
             """
         )
         self._connection.commit()
+
+    def _execute_sql(self, sql):
+        logging.debug(f"Executing sql: {sql}")
+
+        return self._cursor.execute(sql).fetchall()

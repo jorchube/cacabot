@@ -18,14 +18,19 @@ def get_and_handle_updates(cacabot: Cacabot):
 
     commands = extract_commands_from_updates.do(updates)
     for command in commands:
-        execute_command.do(command)
+        output = execute_command.do(command)
+
+        logging.debug(f"Command output: {output}")
+
+        if output is not None:
+            cacabot.send_message_to_chat(command.chat_id, output)
 
 def run_loop(cacabot):
     while True:
         try:
             get_and_handle_updates(cacabot)
         except Exception as e:
-            traceback.format_exc()
+            logging.error(traceback.format_exc())
 
 def main():
     logging.basicConfig(format="[%(asctime)s] %(levelname)s: %(message)s", level=LOGLEVEL)

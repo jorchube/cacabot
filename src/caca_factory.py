@@ -7,11 +7,12 @@ class CacaFactory:
     @classmethod
     def caca_from_valid_update(self, update) -> Caca:
         datetime = self._datetime_from_update(update)
+        chat_name = update["message"]["chat"].get("title", None)
         return Caca(
             update_id=update["update_id"],
             datetime=datetime,
             chat_id=update["message"]["chat"]["id"],
-            chat_name=update["message"]["chat"]["title"],
+            chat_name=chat_name,
             chat_member_name=update["message"]["from"]["first_name"],
             chat_member_id=update["message"]["from"]["id"],
         )

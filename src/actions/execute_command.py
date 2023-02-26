@@ -10,7 +10,7 @@ def do(command: Command):
     _account_for_command(command)
 
     callback = CommandsMap.get_callback_for_command(command)
-    callback(command)
+    return callback(command)
 
 def _is_command_already_executed(command):
     repository = Repository.get()
