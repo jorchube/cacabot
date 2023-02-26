@@ -31,7 +31,7 @@ class CacaFactory:
             chat_id=chat_id,
             chat_name=chat_name,
             chat_member_id=chat_member_id,
-            chat_member_name=chat_member_name
+            chat_member_name=chat_member_name,
         )
 
     @classmethod

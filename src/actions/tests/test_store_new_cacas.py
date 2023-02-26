@@ -21,7 +21,7 @@ class TestStoreNewCacas:
             chat_member_id=789,
             chat_member_name="John Doe",
             chat_name="SupahChat",
-            datetime=datetime(2023, 2, 25, 13, 33, tzinfo=ZoneInfo("Europe/Madrid"))
+            datetime=datetime(2023, 2, 25, 13, 33, tzinfo=ZoneInfo("Europe/Madrid")),
         )
 
     @pytest.fixture
@@ -32,7 +32,7 @@ class TestStoreNewCacas:
             chat_member_id=456,
             chat_member_name="Jane Doe",
             chat_name="SupahChat",
-            datetime=datetime(2023, 2, 25, 16, 33, tzinfo=ZoneInfo("Europe/Madrid"))
+            datetime=datetime(2023, 2, 25, 16, 33, tzinfo=ZoneInfo("Europe/Madrid")),
         )
 
     def test_it_stores_one_caca(self, caca, in_memory_repository):
