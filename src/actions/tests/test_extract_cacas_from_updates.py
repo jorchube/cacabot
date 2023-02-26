@@ -106,7 +106,9 @@ class TestExtractCacasFromUpdates:
         assert caca.chat_member_id == 9999999999
         assert caca.chat_member_name == "Fulanito"
 
-    def test_it_gets_new_cacas_for_many_new_updates_ignoring_invalid_text_messages(self):
+    def test_it_gets_new_cacas_for_many_new_updates_ignoring_invalid_text_messages(
+        self,
+    ):
         updates = [
             {
                 "update_id": 803079895,

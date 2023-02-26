@@ -17,18 +17,16 @@ class TestExecuteCommand:
         return Mock()
 
     def test_it_executes_a_command(self, mock_command, mock_callback):
-        CommandsMap._map = {
-            mock_command.command: mock_callback
-        }
+        CommandsMap._map = {mock_command.command: mock_callback}
 
         execute_command.do(mock_command)
 
         mock_callback.assert_called_once_with(mock_command)
 
-    def test_it_does_nothing_when_command_has_already_been_accounted_for(self, mock_command, mock_callback):
-        CommandsMap._map = {
-            mock_command.command: mock_callback
-        }
+    def test_it_does_nothing_when_command_has_already_been_accounted_for(
+        self, mock_command, mock_callback
+    ):
+        CommandsMap._map = {mock_command.command: mock_callback}
         execute_command.do(mock_command)
         mock_callback.reset_mock()
 
@@ -37,9 +35,7 @@ class TestExecuteCommand:
         mock_callback.assert_not_called()
 
     def test_it_does_nothing_for_an_unknown_command(self, mock_command, mock_callback):
-        CommandsMap._map = {
-            mock_command.command: mock_callback
-        }
+        CommandsMap._map = {mock_command.command: mock_callback}
 
         unknown_command = Command(update_id=23, chat_id=123, command="/unknown_command")
 

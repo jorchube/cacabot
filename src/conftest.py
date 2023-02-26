@@ -20,6 +20,7 @@ def mock_responses():
     with responses.RequestsMock() as r:
         yield r
 
+
 @pytest.fixture
 def in_memory_repository():
     Repository.initialize(in_memory=True)

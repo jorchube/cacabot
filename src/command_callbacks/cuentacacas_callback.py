@@ -17,6 +17,7 @@ def callback(command: Command):
 
     return _format_for_chat(results)
 
+
 def _format_for_chat(results):
     message = "Total de cacas:\n"
     for key, value in results.items():
@@ -27,6 +28,7 @@ def _format_for_chat(results):
 
     return message
 
+
 def _count_cacas_per_chat_member(all_cacas):
     result = dict()
 
@@ -35,14 +37,11 @@ def _count_cacas_per_chat_member(all_cacas):
         chat_member_name = caca.chat_member_name
 
         if chat_member_id not in result:
-            result[chat_member_id] = {
-                "name": chat_member_name,
-                "count": 0
-            }
+            result[chat_member_id] = {"name": chat_member_name, "count": 0}
 
         result[chat_member_id] = {
             "name": chat_member_name,
-            "count": result[chat_member_id]["count"] + 1
+            "count": result[chat_member_id]["count"] + 1,
         }
 
     return result

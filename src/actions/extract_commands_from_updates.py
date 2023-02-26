@@ -13,12 +13,14 @@ def do(updates) -> list[Command]:
 
     return commands
 
+
 def _command_from_update(update):
     update_id = update["update_id"]
     chat_id = update["message"]["chat"]["id"]
     command = update["message"]["text"]
 
     return Command(update_id=update_id, chat_id=chat_id, command=command)
+
 
 def _update_is_command(update):
     if "message" not in update:
@@ -31,6 +33,7 @@ def _update_is_command(update):
             return True
 
     return False
+
 
 def _entity_is_bot_command(entity):
     return entity["type"] == "bot_command"

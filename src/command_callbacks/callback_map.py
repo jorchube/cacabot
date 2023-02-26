@@ -1,9 +1,8 @@
 from command_callbacks import cuentacacas_callback
 
+
 class CommandsMap:
-    _map = {
-        "/cuentacacas": cuentacacas_callback.callback
-    }
+    _map = {"/cuentacacas": cuentacacas_callback.callback}
 
     @classmethod
     def get_callback_for_command(self, command):

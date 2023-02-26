@@ -6,6 +6,7 @@ from cacabot import Cacabot
 def do(updates) -> list[Caca]:
     return _get_cacas_from_updates(updates)
 
+
 def _get_cacas_from_updates(updates) -> list[Caca]:
     cacas = list()
     for update in updates:
@@ -19,8 +20,10 @@ def _get_cacas_from_updates(updates) -> list[Caca]:
 
     return cacas
 
+
 def _is_a_text_message(update):
     return "message" in update and "text" in update["message"]
+
 
 def _is_valid_caca(update):
     update_text = update["message"]["text"]

@@ -12,10 +12,12 @@ def do(command: Command):
     callback = CommandsMap.get_callback_for_command(command)
     return callback(command)
 
+
 def _is_command_already_executed(command):
     repository = Repository.get()
 
     return repository.is_command_stored(command)
+
 
 def _account_for_command(command):
     repository = Repository.get()

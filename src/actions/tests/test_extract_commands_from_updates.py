@@ -20,24 +20,18 @@ class TestExtractCommandsFromUpdates:
                         "is_bot": False,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "language_code": "en"
+                        "language_code": "en",
                     },
                     "chat": {
                         "id": 344365000,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "type": "private"
+                        "type": "private",
                     },
                     "date": 1677426214,
                     "text": "/a_command",
-                    "entities": [
-                        {
-                            "offset": 0,
-                            "length": 5,
-                            "type": "bot_command"
-                        }
-                    ]
-                }
+                    "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                },
             }
         ]
 
@@ -61,24 +55,18 @@ class TestExtractCommandsFromUpdates:
                         "is_bot": False,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "language_code": "en"
+                        "language_code": "en",
                     },
                     "chat": {
                         "id": 344365000,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "type": "private"
+                        "type": "private",
                     },
                     "date": 1677426214,
                     "text": "/a_command",
-                    "entities": [
-                        {
-                            "offset": 0,
-                            "length": 5,
-                            "type": "bot_command"
-                        }
-                    ]
-                }
+                    "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                },
             },
             {
                 "update_id": 803079929,
@@ -89,25 +77,19 @@ class TestExtractCommandsFromUpdates:
                         "is_bot": False,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "language_code": "en"
+                        "language_code": "en",
                     },
                     "chat": {
                         "id": 344365000,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "type": "private"
+                        "type": "private",
                     },
                     "date": 1677426214,
                     "text": "/another_command",
-                    "entities": [
-                        {
-                            "offset": 0,
-                            "length": 5,
-                            "type": "bot_command"
-                        }
-                    ]
-                }
-            }
+                    "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                },
+            },
         ]
 
         commands = extract_commands_from_updates.do(updates)
@@ -135,24 +117,18 @@ class TestExtractCommandsFromUpdates:
                         "is_bot": False,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "language_code": "en"
+                        "language_code": "en",
                     },
                     "chat": {
                         "id": 344365000,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "type": "private"
+                        "type": "private",
                     },
                     "date": 1677426214,
                     "text": "/a_command",
-                    "entities": [
-                        {
-                            "offset": 0,
-                            "length": 5,
-                            "type": "bot_command"
-                        }
-                    ]
-                }
+                    "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                },
             },
             {
                 "update_id": 803079929,
@@ -163,18 +139,18 @@ class TestExtractCommandsFromUpdates:
                         "is_bot": False,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "language_code": "en"
+                        "language_code": "en",
                     },
                     "chat": {
                         "id": 344365000,
                         "first_name": "John",
                         "last_name": "Doe",
-                        "type": "private"
+                        "type": "private",
                     },
                     "date": 1677426214,
                     "text": "This is not a command",
-                }
-            }
+                },
+            },
         ]
 
         commands = extract_commands_from_updates.do(updates)

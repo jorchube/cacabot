@@ -25,19 +25,23 @@ class TestCuentacacasCallback:
 
         assert result == None
 
-    def test_it_counts_cacas_for_one_chat_member_in_the_repository(self, in_memory_repository, caca):
+    def test_it_counts_cacas_for_one_chat_member_in_the_repository(
+        self, in_memory_repository, caca
+    ):
         in_memory_repository.store_or_update_caca(caca)
 
         command = Command(update_id=123, chat_id=-123, command="/cuentacacas")
         result = cuentacacas_callback.callback(command)
 
         assert result == (
-"""Total de cacas:
+            """Total de cacas:
 
 John Doe: 1"""
-)
+        )
 
-    def test_it_counts_many_cacas_for_many_chat_member_in_the_repository(self, in_memory_repository, caca):
+    def test_it_counts_many_cacas_for_many_chat_member_in_the_repository(
+        self, in_memory_repository, caca
+    ):
         in_memory_repository.store_or_update_caca(caca)
 
         caca.update_id = 300
@@ -52,13 +56,15 @@ John Doe: 1"""
         result = cuentacacas_callback.callback(command)
 
         assert result == (
-"""Total de cacas:
+            """Total de cacas:
 
 John Doe: 2
 Jane Doe: 1"""
-)
+        )
 
-    def test_it_counts_many_cacas_for_one_chat_member_in_the_repository_given_a_chat_member_id_using_the_last_chat_member_name(self, in_memory_repository, caca):
+    def test_it_counts_many_cacas_for_one_chat_member_in_the_repository_given_a_chat_member_id_using_the_last_chat_member_name(
+        self, in_memory_repository, caca
+    ):
         in_memory_repository.store_or_update_caca(caca)
 
         caca.update_id = 300
@@ -72,12 +78,14 @@ Jane Doe: 1"""
         result = cuentacacas_callback.callback(command)
 
         assert result == (
-"""Total de cacas:
+            """Total de cacas:
 
 Jane Doe: 3"""
-)
+        )
 
-    def test_it_counts_cacas_only_for_the_chat_id_specified_in_the_given_command(self, in_memory_repository, caca):
+    def test_it_counts_cacas_only_for_the_chat_id_specified_in_the_given_command(
+        self, in_memory_repository, caca
+    ):
         in_memory_repository.store_or_update_caca(caca)
 
         caca.chat_id = 9999
@@ -88,7 +96,7 @@ Jane Doe: 3"""
         result = cuentacacas_callback.callback(command)
 
         assert result == (
-"""Total de cacas:
+            """Total de cacas:
 
 John Doe: 1"""
-)
+        )

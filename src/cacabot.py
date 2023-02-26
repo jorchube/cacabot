@@ -11,7 +11,9 @@ class Cacabot:
         self._send_message_url = f"https://api.telegram.org/bot{auth_token}/sendmessage"
 
     def get_updates(self):
-        response = requests.post(self._get_udpates_url, json={"timeout": 60, "offset": self._update_offset})
+        response = requests.post(
+            self._get_udpates_url, json={"timeout": 60, "offset": self._update_offset}
+        )
 
         response_json = response.json()
         updates = response_json["result"]
@@ -33,7 +35,9 @@ class Cacabot:
     def send_message_to_chat(self, chat_id, message):
         logging.info(f"Sendind message to chat_id {chat_id}")
 
-        response = requests.post(self._send_message_url, json={"chat_id": chat_id, "text": message})
+        response = requests.post(
+            self._send_message_url, json={"chat_id": chat_id, "text": message}
+        )
 
         if response.status_code != 200:
             logging.error(f"Failed to send message: {response}")

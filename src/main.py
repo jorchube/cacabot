@@ -1,7 +1,12 @@
 import logging
 import traceback
 import auth_token
-from actions import extract_cacas_from_updates, store_new_cacas, extract_commands_from_updates, execute_command
+from actions import (
+    extract_cacas_from_updates,
+    store_new_cacas,
+    extract_commands_from_updates,
+    execute_command,
+)
 from cacabot import Cacabot
 from persistence.repository import Repository
 
@@ -9,6 +14,7 @@ from persistence.repository import Repository
 LOGLEVEL = logging.INFO
 
 AUTH_TOKEN_FILE = "secret.json"
+
 
 def get_and_handle_updates(cacabot: Cacabot):
     updates = cacabot.get_updates()
@@ -25,6 +31,7 @@ def get_and_handle_updates(cacabot: Cacabot):
         if output is not None:
             cacabot.send_message_to_chat(command.chat_id, output)
 
+
 def run_loop(cacabot: Cacabot):
     while True:
         try:
@@ -33,14 +40,12 @@ def run_loop(cacabot: Cacabot):
             backtrace = traceback.format_exc()
             logging.error(backtrace)
 
+
 def main():
     logging.basicConfig(
         format="[%(asctime)s] %(levelname)s: %(message)s",
         level=LOGLEVEL,
-        handlers=[
-            logging.FileHandler("cacabot.log"),
-            logging.StreamHandler()
-        ]
+        handlers=[logging.FileHandler("cacabot.log"), logging.StreamHandler()],
     )
 
     bot_auth_token = auth_token.get(AUTH_TOKEN_FILE)
@@ -48,6 +53,7 @@ def main():
     Repository.initialize()
 
     run_loop(cacabot)
+
 
 if __name__ == "__main__":
     main()
