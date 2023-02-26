@@ -1,5 +1,5 @@
-from src.caca import Caca
-from src.persistence.repository import Repository
+from caca import Caca
+from persistence.repository import Repository
 
 
 def do(cacas: list[Caca]) -> None:

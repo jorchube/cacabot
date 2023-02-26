@@ -1,5 +1,5 @@
-from src.command import Command
-from src.persistence.repository import Repository
+from command import Command
+from persistence.repository import Repository
 
 
 def callback(command: Command):

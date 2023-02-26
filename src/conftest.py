@@ -1,8 +1,8 @@
 import pytest
 import responses
 
-from src.cacabot import Cacabot
-from src.persistence.repository import Repository
+from cacabot import Cacabot
+from persistence.repository import Repository
 
 
 @pytest.fixture

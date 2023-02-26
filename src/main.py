@@ -12,9 +12,9 @@ def get_and_handle_updates(cacabot: Cacabot):
     cacas = extract_cacas_from_updates.do(updates)
     store_new_cacas.do(cacas)
 
-    commands = extract_commands_from_updates(updates)
+    commands = extract_commands_from_updates.do(updates)
     for command in commands:
-        execute_command(command)
+        execute_command.do(command)
 
 def run_loop(cacabot):
     while True:

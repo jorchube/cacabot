@@ -1,4 +1,4 @@
-from src.command import Command
+from command import Command
 
 
 def do(updates) -> list[Command]:

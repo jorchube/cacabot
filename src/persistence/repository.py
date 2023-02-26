@@ -1,9 +1,9 @@
 from datetime import datetime
 import sqlite3
 
-from src.caca import Caca
-from src.caca_factory import CacaFactory
-from src.command import Command
+from caca import Caca
+from caca_factory import CacaFactory
+from command import Command
 
 
 class Repository:

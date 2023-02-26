@@ -1,8 +1,8 @@
 from unittest.mock import Mock
 import pytest
-from src.actions import execute_command
-from src.command import Command
-from src.command_callbacks.callback_map import CommandsMap
+from actions import execute_command
+from command import Command
+from command_callbacks.callback_map import CommandsMap
 
 
 @pytest.mark.usefixtures("in_memory_repository")

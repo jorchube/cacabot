@@ -1,4 +1,4 @@
-from src.command_callbacks import cuentacacas_callback
+from command_callbacks import cuentacacas_callback
 
 class CommandsMap:
     _map = {

@@ -1,9 +1,9 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import pytest
-from src.caca import Caca
-from src.command import Command
-from src.command_callbacks import cuentacacas_callback
+from caca import Caca
+from command import Command
+from command_callbacks import cuentacacas_callback
 
 
 @pytest.mark.usefixtures("in_memory_repository")

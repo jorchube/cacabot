@@ -1,4 +1,4 @@
-from src.actions import extract_cacas_from_updates
+from actions import extract_cacas_from_updates
 
 
 class TestExtractCacasFromUpdates:

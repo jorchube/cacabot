@@ -1,6 +1,6 @@
 import requests
-from src.caca import Caca
-from src.caca_factory import CacaFactory
+from caca import Caca
+from caca_factory import CacaFactory
 
 
 class Cacabot:

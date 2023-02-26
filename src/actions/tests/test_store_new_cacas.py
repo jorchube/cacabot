@@ -2,8 +2,8 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import pytest
 
-from src.actions import store_new_cacas
-from src.caca import Caca
+from actions import store_new_cacas
+from caca import Caca
 
 
 class TestStoreNewCacas:

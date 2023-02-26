@@ -1,6 +1,6 @@
-from src.command import Command
-from src.command_callbacks.callback_map import CommandsMap
-from src.persistence.repository import Repository
+from command import Command
+from command_callbacks.callback_map import CommandsMap
+from persistence.repository import Repository
 
 
 def do(command: Command):

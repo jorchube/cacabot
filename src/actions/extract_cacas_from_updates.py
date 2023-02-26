@@ -1,6 +1,6 @@
-from src.caca import Caca
-from src.caca_factory import CacaFactory
-from src.cacabot import Cacabot
+from caca import Caca
+from caca_factory import CacaFactory
+from cacabot import Cacabot
 
 
 def do(updates) -> list[Caca]:

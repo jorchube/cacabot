@@ -1,6 +1,6 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from src.caca import Caca
+from caca import Caca
 
 
 class CacaFactory:
