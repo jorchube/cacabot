@@ -4,15 +4,9 @@ import pytest
 
 from src.actions import store_new_cacas
 from src.caca import Caca
-from src.persistence.repository import Repository
 
 
 class TestStoreNewCacas:
-    @pytest.fixture
-    def in_memory_repository(self):
-        Repository.initialize(in_memory=True)
-        return Repository.get()
-
     @pytest.fixture
     def caca(self):
         return Caca(

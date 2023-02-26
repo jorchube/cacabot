@@ -3,6 +3,7 @@ import sqlite3
 
 from src.caca import Caca
 from src.caca_factory import CacaFactory
+from src.command import Command
 
 
 class Repository:
@@ -22,6 +23,7 @@ class Repository:
         self._cursor = self._connection.cursor()
 
         self._create_cacas_table()
+        self._create_commands_table()
 
     def _create_cacas_table(self):
         self._cursor.execute(
@@ -33,6 +35,16 @@ class Repository:
                 chat_name,
                 chat_member_id,
                 chat_member_name)
+            """
+        )
+
+    def _create_commands_table(self):
+        self._cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS commands(
+                update_id PRIMARY KEY,
+                chat_id,
+                command)
             """
         )
 
@@ -110,3 +122,39 @@ class Repository:
         ).fetchall()
 
         return [CacaFactory.caca_from_repository_result(result) for result in results]
+
+    def get_all_cacas_for_chat(self, chat_id) -> list[Caca]:
+        results = self._cursor.execute(
+            f"""
+            SELECT update_id, timestamp, chat_id, chat_name, chat_member_id, chat_member_name
+            FROM cacas
+            WHERE chat_id={chat_id}
+            """
+        ).fetchall()
+
+        return [CacaFactory.caca_from_repository_result(result) for result in results]
+
+    def is_command_stored(self, command: Command):
+        update_id = command.update_id
+        results = self._cursor.execute(
+            f"""
+            SELECT 1
+            FROM commands
+            WHERE update_id={update_id}
+            """
+        ).fetchall()
+
+        return len(results) > 0
+
+    def store_command(self, command: Command):
+        self._cursor.execute(
+            f"""
+            INSERT INTO commands(update_id, chat_id, command)
+            VALUES (
+                {command.update_id},
+                {command.chat_id},
+                '{command.command}'
+            )
+            """
+        )
+        self._connection.commit()

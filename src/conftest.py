@@ -2,6 +2,7 @@ import pytest
 import responses
 
 from src.cacabot import Cacabot
+from src.persistence.repository import Repository
 
 
 @pytest.fixture
@@ -18,3 +19,8 @@ def test_bot(auth_token):
 def mock_responses():
     with responses.RequestsMock() as r:
         yield r
+
+@pytest.fixture
+def in_memory_repository():
+    Repository.initialize(in_memory=True)
+    return Repository.get()
