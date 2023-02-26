@@ -6,3 +6,9 @@ test:
 
 linting:
 	black .
+
+setup-run-environment:
+	pipenv install
+
+run:
+	python src/main.py
