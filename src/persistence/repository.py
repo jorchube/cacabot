@@ -6,6 +6,16 @@ from src.caca_factory import CacaFactory
 
 
 class Repository:
+    _instance = None
+
+    @classmethod
+    def get(self) -> "Repository":
+        return Repository._instance
+
+    @classmethod
+    def initialize(self, in_memory=False) -> None:
+        Repository._instance = Repository(in_memory=in_memory)
+
     def __init__(self, in_memory=False) -> None:
         self._db_path = ":memory:" if in_memory else "cacabot.db"
         self._connection = sqlite3.connect(self._db_path)
