@@ -24,7 +24,7 @@ class Cacabot:
             if not self._is_valid_caca(update):
                 continue
 
-            caca = CacaFactory.create_caca_from_valid_update(update)
+            caca = CacaFactory.caca_from_valid_update(update)
             cacas.append(caca)
 
         return cacas
