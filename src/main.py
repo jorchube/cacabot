@@ -25,12 +25,13 @@ def get_and_handle_updates(cacabot: Cacabot):
         if output is not None:
             cacabot.send_message_to_chat(command.chat_id, output)
 
-def run_loop(cacabot):
+def run_loop(cacabot: Cacabot):
     while True:
         try:
             get_and_handle_updates(cacabot)
         except Exception as e:
-            logging.error(traceback.format_exc())
+            backtrace = traceback.format_exc()
+            logging.error(backtrace)
 
 def main():
     logging.basicConfig(format="[%(asctime)s] %(levelname)s: %(message)s", level=LOGLEVEL)
