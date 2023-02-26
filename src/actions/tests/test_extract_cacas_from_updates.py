@@ -1,7 +1,7 @@
 from src.actions import extract_cacas_from_updates
 
 
-class TestGetNewCacas:
+class TestExtractCacasFromUpdates:
     def test_it_gets_new_cacas_for_empty_updates(self):
         updates = list()
 
