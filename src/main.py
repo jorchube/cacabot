@@ -34,7 +34,14 @@ def run_loop(cacabot: Cacabot):
             logging.error(backtrace)
 
 def main():
-    logging.basicConfig(format="[%(asctime)s] %(levelname)s: %(message)s", level=LOGLEVEL)
+    logging.basicConfig(
+        format="[%(asctime)s] %(levelname)s: %(message)s",
+        level=LOGLEVEL,
+        handlers=[
+            logging.FileHandler("cacabot.log"),
+            logging.StreamHandler()
+        ]
+    )
 
     bot_auth_token = auth_token.get(AUTH_TOKEN_FILE)
     cacabot = Cacabot(bot_auth_token)
