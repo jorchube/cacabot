@@ -4,7 +4,7 @@ from persistence.repository import Repository
 
 
 def callback(command: Command):
-    logging.info(f"Executing command {command.command} for chat id {command.chat_id}")
+    logging.info(f"Executing command: {command}")
 
     repository = Repository.get()
 

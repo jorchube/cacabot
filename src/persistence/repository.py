@@ -53,8 +53,10 @@ class Repository:
 
         if self._is_update_id_already_stored(update_id):
             self._update_caca(caca)
+            logging.info(f"Updated caca: {caca}")
         else:
             self._insert_caca(caca)
+            logging.info(f"Created caca: {caca}")
 
         self._connection.commit()
 
