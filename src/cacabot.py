@@ -18,7 +18,7 @@ class Cacabot:
         response_json = response.json()
         updates = response_json["result"]
 
-        logging.info(f"Cacabot got {len(updates)} updates")
+        logging.debug(f"Cacabot got {len(updates)} updates")
 
         if len(updates) == 0:
             return list()
