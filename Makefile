@@ -11,19 +11,19 @@ setup-container-environment:
 	pipenv install --system --deploy
 
 build-image:
-	./container/build-image.sh
+	bash ./container/build-image.sh
 
 create-container: build-image
-	./container/create-container.sh
+	bash ./container/create-container.sh
 
 start-container:
-	./container/start-container.sh
+	bash ./container/start-container.sh
 
 stop-container:
-	./container/stop-container.sh
+	bash ./container/stop-container.sh
 
 clean-environment:
-	./container/clean.sh
+	bash ./container/clean.sh
 
 run:
 	python src/main.py
