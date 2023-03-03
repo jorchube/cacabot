@@ -1,5 +1,5 @@
 **/secret.json
 .vscode
 **/__pycache__
-cacabot.db
+cacabot.db*
 cacabot.log
