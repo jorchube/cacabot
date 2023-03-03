@@ -18,8 +18,10 @@ def _command_from_update(update):
     update_id = update["update_id"]
     chat_id = update["message"]["chat"]["id"]
     command = update["message"]["text"]
+    chat_member_id = update["message"]["from"]["id"]
+    chat_member_name = update["message"]["from"]["first_name"]
 
-    return Command(update_id=update_id, chat_id=chat_id, command=command)
+    return Command(update_id=update_id, chat_id=chat_id, command=command, chat_member_id=chat_member_id, chat_member_name=chat_member_name)
 
 
 def _update_is_command(update):

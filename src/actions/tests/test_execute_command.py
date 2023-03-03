@@ -9,7 +9,7 @@ from command_callbacks.callback_map import CommandsMap
 class TestExecuteCommand:
     @pytest.fixture
     def mock_command(self):
-        command = Command(update_id=23, chat_id=123, command="/a_command")
+        command = Command(update_id=23, chat_id=123, command="/a_command", chat_member_id=1234, chat_member_name="John")
         return command
 
     @pytest.fixture
@@ -37,7 +37,7 @@ class TestExecuteCommand:
     def test_it_does_nothing_for_an_unknown_command(self, mock_command, mock_callback):
         CommandsMap._map = {mock_command.command: mock_callback}
 
-        unknown_command = Command(update_id=23, chat_id=123, command="/unknown_command")
+        unknown_command = Command(update_id=23, chat_id=123, command="/unknown_command", chat_member_id=789, chat_member_name="Jane")
 
         execute_command.do(unknown_command)
 

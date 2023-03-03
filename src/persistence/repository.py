@@ -25,6 +25,8 @@ class Repository:
         self._create_cacas_table()
         self._create_commands_table()
 
+        self._execute_migrations()
+
     def _create_cacas_table(self):
         self._execute_sql(
             """
@@ -47,6 +49,17 @@ class Repository:
                 command)
             """
         )
+
+    def _execute_migrations(self):
+        self._add_chat_member_data_to_commands_table()
+
+    def _add_chat_member_data_to_commands_table(self):
+        results = self._execute_sql("SELECT count(*) as num_columns FROM pragma_table_info('commands')")
+        number_of_columns = results[0][0]
+
+        if number_of_columns == 3:
+            self._execute_sql("ALTER TABLE commands ADD COLUMN chat_member_id")
+            self._execute_sql("ALTER TABLE commands ADD COLUMN chat_member_name")
 
     def store_or_update_caca(self, caca: Caca) -> None:
         update_id = caca.update_id
@@ -150,11 +163,13 @@ class Repository:
     def store_command(self, command: Command):
         self._execute_sql(
             f"""
-            INSERT INTO commands(update_id, chat_id, command)
+            INSERT INTO commands(update_id, chat_id, command, chat_member_id, chat_member_name)
             VALUES (
                 {command.update_id},
                 {command.chat_id},
-                '{command.command}'
+                '{command.command}',
+                {command.chat_member_id},
+                '{command.chat_member_name}'
             )
             """
         )

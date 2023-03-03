@@ -43,6 +43,8 @@ class TestExtractCommandsFromUpdates:
         assert command.update_id == 803079927
         assert command.chat_id == 344365000
         assert command.command == "/a_command"
+        assert command.chat_member_id == 344365000
+        assert command.chat_member_name == "John"
 
     def test_it_gets_commands_from_many_updates(self):
         updates = [
@@ -73,15 +75,15 @@ class TestExtractCommandsFromUpdates:
                 "message": {
                     "message_id": 49,
                     "from": {
-                        "id": 344365000,
+                        "id": 344365001,
                         "is_bot": False,
-                        "first_name": "John",
+                        "first_name": "Jane",
                         "last_name": "Doe",
                         "language_code": "en",
                     },
                     "chat": {
-                        "id": 344365000,
-                        "first_name": "John",
+                        "id": 344365001,
+                        "first_name": "Jane",
                         "last_name": "Doe",
                         "type": "private",
                     },
@@ -100,11 +102,15 @@ class TestExtractCommandsFromUpdates:
         assert command.update_id == 803079927
         assert command.chat_id == 344365000
         assert command.command == "/a_command"
+        assert command.chat_member_id == 344365000
+        assert command.chat_member_name == "John"
 
         command = commands[1]
         assert command.update_id == 803079929
-        assert command.chat_id == 344365000
+        assert command.chat_id == 344365001
         assert command.command == "/another_command"
+        assert command.chat_member_id == 344365001
+        assert command.chat_member_name == "Jane"
 
     def test_it_ignores_non_commands_messages_from_many_updates(self):
         updates = [
@@ -161,3 +167,5 @@ class TestExtractCommandsFromUpdates:
         assert command.update_id == 803079927
         assert command.chat_id == 344365000
         assert command.command == "/a_command"
+        assert command.chat_member_id == 344365000
+        assert command.chat_member_name == "John"
