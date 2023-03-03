@@ -20,7 +20,13 @@ class TestCuentacacasCallback:
         )
 
     def test_it_counts_cacas_for_empty_repository(self):
-        command = Command(update_id=123, chat_id=-123, command="/cuentacacas", chat_member_id=789, chat_member_name=-123)
+        command = Command(
+            update_id=123,
+            chat_id=-123,
+            command="/cuentacacas",
+            chat_member_id=789,
+            chat_member_name=-123,
+        )
         result = cuentacacas_callback.callback(command)
 
         assert result == None
@@ -30,7 +36,13 @@ class TestCuentacacasCallback:
     ):
         in_memory_repository.store_or_update_caca(caca)
 
-        command = Command(update_id=123, chat_id=-123, command="/cuentacacas", chat_member_id=789, chat_member_name=-123)
+        command = Command(
+            update_id=123,
+            chat_id=-123,
+            command="/cuentacacas",
+            chat_member_id=789,
+            chat_member_name=-123,
+        )
         result = cuentacacas_callback.callback(command)
 
         assert result == (
@@ -52,7 +64,13 @@ John Doe: 1"""
         caca.chat_member_name = "Jane Doe"
         in_memory_repository.store_or_update_caca(caca)
 
-        command = Command(update_id=123, chat_id=-123, command="/cuentacacas", chat_member_id=789, chat_member_name=-123)
+        command = Command(
+            update_id=123,
+            chat_id=-123,
+            command="/cuentacacas",
+            chat_member_id=789,
+            chat_member_name=-123,
+        )
         result = cuentacacas_callback.callback(command)
 
         assert result == (
@@ -74,7 +92,13 @@ Jane Doe: 1"""
         caca.chat_member_name = "Jane Doe"
         in_memory_repository.store_or_update_caca(caca)
 
-        command = Command(update_id=123, chat_id=-123, command="/cuentacacas", chat_member_id=789, chat_member_name=-123)
+        command = Command(
+            update_id=123,
+            chat_id=-123,
+            command="/cuentacacas",
+            chat_member_id=789,
+            chat_member_name=-123,
+        )
         result = cuentacacas_callback.callback(command)
 
         assert result == (
@@ -92,7 +116,13 @@ Jane Doe: 3"""
         caca.update_id = 898
         in_memory_repository.store_or_update_caca(caca)
 
-        command = Command(update_id=123, chat_id=-123, command="/cuentacacas", chat_member_id=789, chat_member_name=-123)
+        command = Command(
+            update_id=123,
+            chat_id=-123,
+            command="/cuentacacas",
+            chat_member_id=789,
+            chat_member_name=-123,
+        )
         result = cuentacacas_callback.callback(command)
 
         assert result == (

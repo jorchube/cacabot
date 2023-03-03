@@ -29,7 +29,7 @@ class TestRepository:
             chat_id=-44,
             command="/a_command",
             chat_member_id=55,
-            chat_member_name="John"
+            chat_member_name="John",
         )
 
     def test_it_skips_an_already_applied_migration(self, in_memory_repository):
@@ -56,7 +56,6 @@ class TestRepository:
 
         assert len(cacas) == 1
         assert cacas[0] == caca
-
 
     def test_it_stores_a_command(self, in_memory_repository, command):
         in_memory_repository.store_command(command)

@@ -54,7 +54,9 @@ class Repository:
         self._add_chat_member_data_to_commands_table()
 
     def _add_chat_member_data_to_commands_table(self):
-        results = self._execute_sql("SELECT count(*) as num_columns FROM pragma_table_info('commands')")
+        results = self._execute_sql(
+            "SELECT count(*) as num_columns FROM pragma_table_info('commands')"
+        )
         number_of_columns = results[0][0]
 
         if number_of_columns == 3:
