@@ -3,7 +3,7 @@ from command import Command
 from persistence.repository import Repository
 
 
-def callback(command: Command):
+def callback(command: Command) -> str:
     logging.info(f"Executing command: {command}")
 
     repository = Repository.get()

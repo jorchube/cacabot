@@ -177,6 +177,18 @@ class Repository:
         )
         self._connection.commit()
 
+    def count_cacas_for_member_in_chat(self, chat_member_id: int, chat_id: int) -> int:
+        result = self._execute_sql(
+            f"""
+            SELECT count(*)
+            FROM cacas
+            WHERE chat_id={chat_id} and chat_member_id={chat_member_id}
+            """
+        )
+
+        return result[0][0]
+
+
     def _execute_sql(self, sql):
         logging.debug(f"Executing sql: {sql}")
 
