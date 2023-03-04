@@ -188,7 +188,6 @@ class Repository:
 
         return result[0][0]
 
-
     def _execute_sql(self, sql):
         logging.debug(f"Executing sql: {sql}")
 

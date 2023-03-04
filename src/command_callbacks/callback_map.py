@@ -5,10 +5,11 @@ from command_callbacks import cuentacacas_callback, miscacas_callback
 # cuentacacas - Conteo de cacas
 # miscacas - Te enseño todas tus cacas
 
+
 class CommandsMap:
     _map = {
         "/cuentacacas": cuentacacas_callback.callback,
-        "/miscacas": miscacas_callback.callback
+        "/miscacas": miscacas_callback.callback,
     }
 
     @classmethod

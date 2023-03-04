@@ -34,7 +34,9 @@ class TestMiscacasCallback:
 """
         )
 
-    def test_it_returns_mis_cacas_when_one_caca_is_stored(self, in_memory_repository, caca):
+    def test_it_returns_mis_cacas_when_one_caca_is_stored(
+        self, in_memory_repository, caca
+    ):
         in_memory_repository.store_or_update_caca(caca)
 
         command = Command(
@@ -51,7 +53,9 @@ class TestMiscacasCallback:
 💩"""
         )
 
-    def test_it_returns_mis_cacas_when_many_cacas_are_stored(self, in_memory_repository, caca):
+    def test_it_returns_mis_cacas_when_many_cacas_are_stored(
+        self, in_memory_repository, caca
+    ):
         in_memory_repository.store_or_update_caca(caca)
         caca.update_id = 999999
         in_memory_repository.store_or_update_caca(caca)
