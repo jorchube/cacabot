@@ -1,7 +1,5 @@
 import logging
 import requests
-from caca import Caca
-from caca_factory import CacaFactory
 
 
 class Cacabot:
@@ -9,6 +7,7 @@ class Cacabot:
         self._update_offset = 0
         self._get_udpates_url = f"https://api.telegram.org/bot{auth_token}/getupdates"
         self._send_message_url = f"https://api.telegram.org/bot{auth_token}/sendmessage"
+        self._send_image_url = f"https://api.telegram.org/bot{auth_token}/sendphoto"
 
     def get_updates(self):
         response = requests.post(
@@ -48,3 +47,25 @@ class Cacabot:
             logging.error(f"Failed to send message: {response}")
 
         logging.debug(f"Message to chat_id {chat_id} sent successfully: {response}")
+
+    def send_image_to_chat(self, chat_id, image_path, caption=None):
+        image = open(image_path, "rb")
+
+        params = {
+            'chat_id': chat_id,
+            "caption": caption
+        }
+        files = {
+            'photo': image
+        }
+        response = requests.post(self._send_image_url, params, files=files)
+
+        if response.status_code != 200:
+            logging.error(f"Failed to send message: {response}")
+            return
+
+        response_json = response.json()
+        if response_json["ok"] == False:
+            logging.error(f"Failed to send message: {response}")
+
+        logging.debug(f"Image to chat_id {chat_id} sent successfully: {response}")
