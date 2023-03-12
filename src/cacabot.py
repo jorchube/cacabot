@@ -49,16 +49,12 @@ class Cacabot:
         logging.debug(f"Message to chat_id {chat_id} sent successfully: {response}")
 
     def send_image_to_chat(self, chat_id, image_path, caption=None):
-        image = open(image_path, "rb")
+        params = {"chat_id": chat_id, "caption": caption}
 
-        params = {
-            'chat_id': chat_id,
-            "caption": caption
-        }
-        files = {
-            'photo': image
-        }
-        response = requests.post(self._send_image_url, params, files=files)
+        with open(image_path, "rb") as image:
+            response = requests.post(
+                self._send_image_url, params, files={"photo": image}
+            )
 
         if response.status_code != 200:
             logging.error(f"Failed to send message: {response}")
