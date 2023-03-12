@@ -12,7 +12,7 @@ from cacabot import Cacabot
 from persistence.repository import Repository
 
 
-LOGLEVEL = logging.DEBUG
+LOGLEVEL = logging.INFO
 
 AUTH_TOKEN_FILE = "secret.json"
 
