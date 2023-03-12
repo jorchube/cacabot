@@ -2,6 +2,7 @@ import logging
 import traceback
 import auth_token
 from actions import (
+    award_a_caca,
     extract_cacas_from_updates,
     store_new_cacas,
     extract_commands_from_updates,
@@ -11,7 +12,7 @@ from cacabot import Cacabot
 from persistence.repository import Repository
 
 
-LOGLEVEL = logging.INFO
+LOGLEVEL = logging.DEBUG
 
 AUTH_TOKEN_FILE = "secret.json"
 
@@ -21,6 +22,9 @@ def get_and_handle_updates(cacabot: Cacabot):
 
     cacas = extract_cacas_from_updates.do(updates)
     store_new_cacas.do(cacas)
+
+    for caca in cacas:
+        award_a_caca.do(caca, cacabot)
 
     commands = extract_commands_from_updates.do(updates)
     for command in commands:

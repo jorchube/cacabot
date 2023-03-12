@@ -34,7 +34,9 @@ class TestCuentacacas:
                             },
                             "date": 1677426214,
                             "text": "/cuentacacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
                     }
                 ],
@@ -90,9 +92,11 @@ class TestCuentacacas:
                             },
                             "date": 1677426214,
                             "text": "/cuentacacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
-                    }
+                    },
                 ],
             },
         )
@@ -100,7 +104,11 @@ class TestCuentacacas:
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/sendmessage",
             status=200,
-            match=[matchers.json_params_matcher({"chat_id": -859646311, "text": "Total de cacas:\n\nPepa: 1"})],
+            match=[
+                matchers.json_params_matcher(
+                    {"chat_id": -859646311, "text": "Total de cacas:\n\nPepa: 1"}
+                )
+            ],
             json={
                 "ok": True,
                 "result": [{"update_id": 803079898, "something": "..."}],
@@ -194,9 +202,11 @@ class TestCuentacacas:
                             },
                             "date": 1677426214,
                             "text": "/cuentacacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
-                    }
+                    },
                 ],
             },
         )
@@ -204,7 +214,14 @@ class TestCuentacacas:
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/sendmessage",
             status=200,
-            match=[matchers.json_params_matcher({"chat_id": -859646311, "text": "Total de cacas:\n\nPepa: 2\nJohn: 1"})],
+            match=[
+                matchers.json_params_matcher(
+                    {
+                        "chat_id": -859646311,
+                        "text": "Total de cacas:\n\nPepa: 2\nJohn: 1",
+                    }
+                )
+            ],
             json={
                 "ok": True,
                 "result": [{"update_id": 803079898, "something": "..."}],
@@ -212,7 +229,6 @@ class TestCuentacacas:
         )
 
         get_and_handle_updates(test_bot)
-
 
     def test_it_sends_cuentacacas_command_response_when_there_are_results_ignoring_other_chats(
         self, mock_responses, auth_token, test_bot
@@ -280,9 +296,11 @@ class TestCuentacacas:
                             },
                             "date": 1677426214,
                             "text": "/cuentacacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
-                    }
+                    },
                 ],
             },
         )
@@ -290,7 +308,11 @@ class TestCuentacacas:
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/sendmessage",
             status=200,
-            match=[matchers.json_params_matcher({"chat_id": -859646311, "text": "Total de cacas:\n\nPepa: 1"})],
+            match=[
+                matchers.json_params_matcher(
+                    {"chat_id": -859646311, "text": "Total de cacas:\n\nPepa: 1"}
+                )
+            ],
             json={
                 "ok": True,
                 "result": [{"update_id": 803079898, "something": "..."}],

@@ -34,7 +34,9 @@ class TestMiscacas:
                             },
                             "date": 1677426214,
                             "text": "/miscacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
                     }
                 ],
@@ -44,7 +46,11 @@ class TestMiscacas:
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/sendmessage",
             status=200,
-            match=[matchers.json_params_matcher({"chat_id": -859646311, "text": "Estas son tus cacas John:\n"})],
+            match=[
+                matchers.json_params_matcher(
+                    {"chat_id": -859646311, "text": "Estas son tus cacas John:\n"}
+                )
+            ],
             json={
                 "ok": True,
                 "result": [{"update_id": 803079898, "something": "..."}],
@@ -100,9 +106,11 @@ class TestMiscacas:
                             },
                             "date": 1677426214,
                             "text": "/miscacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
-                    }
+                    },
                 ],
             },
         )
@@ -110,7 +118,11 @@ class TestMiscacas:
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/sendmessage",
             status=200,
-            match=[matchers.json_params_matcher({"chat_id": -859646311, "text": "Estas son tus cacas Pepa:\n💩"})],
+            match=[
+                matchers.json_params_matcher(
+                    {"chat_id": -859646311, "text": "Estas son tus cacas Pepa:\n💩"}
+                )
+            ],
             json={
                 "ok": True,
                 "result": [{"update_id": 803079898, "something": "..."}],
@@ -204,9 +216,11 @@ class TestMiscacas:
                             },
                             "date": 1677426214,
                             "text": "/miscacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
-                    }
+                    },
                 ],
             },
         )
@@ -214,7 +228,11 @@ class TestMiscacas:
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/sendmessage",
             status=200,
-            match=[matchers.json_params_matcher({"chat_id": -859646311, "text": "Estas son tus cacas Pepa:\n💩💩"})],
+            match=[
+                matchers.json_params_matcher(
+                    {"chat_id": -859646311, "text": "Estas son tus cacas Pepa:\n💩💩"}
+                )
+            ],
             json={
                 "ok": True,
                 "result": [{"update_id": 803079898, "something": "..."}],
@@ -289,9 +307,11 @@ class TestMiscacas:
                             },
                             "date": 1677426214,
                             "text": "/miscacas",
-                            "entities": [{"offset": 0, "length": 5, "type": "bot_command"}],
+                            "entities": [
+                                {"offset": 0, "length": 5, "type": "bot_command"}
+                            ],
                         },
-                    }
+                    },
                 ],
             },
         )
@@ -299,7 +319,11 @@ class TestMiscacas:
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/sendmessage",
             status=200,
-            match=[matchers.json_params_matcher({"chat_id": -859646311, "text": "Estas son tus cacas Pepa:\n💩"})],
+            match=[
+                matchers.json_params_matcher(
+                    {"chat_id": -859646311, "text": "Estas son tus cacas Pepa:\n💩"}
+                )
+            ],
             json={
                 "ok": True,
                 "result": [{"update_id": 803079898, "something": "..."}],
