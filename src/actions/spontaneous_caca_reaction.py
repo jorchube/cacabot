@@ -22,12 +22,14 @@ REACTIONS = [
     "Ahora pesas medio kilo menos",
 ]
 
+
 def do(caca: Caca, cacabot: Cacabot):
     if REACTION_PROBABILITY < random.random():
         return
 
     reaction = _generate_reaction_to_caca(caca)
     cacabot.send_message_to_chat(chat_id=caca.chat_id, message=reaction)
+
 
 def _generate_reaction_to_caca(caca):
     reaction_string = random.choice(REACTIONS)

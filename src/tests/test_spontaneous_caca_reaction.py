@@ -7,16 +7,23 @@ from main import get_and_handle_updates
 
 @pytest.mark.usefixtures("in_memory_repository")
 class TestSpontaneousCacaReaction:
-
     @pytest.mark.parametrize(
         ("configured_reaction", "expected_response"),
         [
-            ("A configured reaction to a caca from {name}", "A configured reaction to a caca from Pepa"),
-            ("A configured reaction to a caca", "A configured reaction to a caca")
-        ]
+            (
+                "A configured reaction to a caca from {name}",
+                "A configured reaction to a caca from Pepa",
+            ),
+            ("A configured reaction to a caca", "A configured reaction to a caca"),
+        ],
     )
     def test_it_reacts_to_a_caca_when_the_probability_hits(
-        self, mock_responses, auth_token, test_bot, configured_reaction, expected_response
+        self,
+        mock_responses,
+        auth_token,
+        test_bot,
+        configured_reaction,
+        expected_response,
     ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
@@ -66,8 +73,9 @@ class TestSpontaneousCacaReaction:
 
         get_and_handle_updates(test_bot)
 
-
-    def test_it_does_not_react_to_a_caca_when_the_probability_does_not_hit(self, mock_responses, auth_token, test_bot):
+    def test_it_does_not_react_to_a_caca_when_the_probability_does_not_hit(
+        self, mock_responses, auth_token, test_bot
+    ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
             status=200,
@@ -98,8 +106,6 @@ class TestSpontaneousCacaReaction:
         )
 
         spontaneous_caca_reaction.REACTION_PROBABILITY = 0
-        spontaneous_caca_reaction.REACTIONS = [
-            "A configured reaction to a caca"
-        ]
+        spontaneous_caca_reaction.REACTIONS = ["A configured reaction to a caca"]
 
         get_and_handle_updates(test_bot)
