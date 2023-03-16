@@ -10,11 +10,8 @@ class TestSpontaneousCacaReaction:
     @pytest.mark.parametrize(
         ("configured_reaction", "expected_response"),
         [
-            (
-                "A configured reaction to a caca from {name}",
-                "A configured reaction to a caca from Pepa",
-            ),
-            ("A configured reaction to a caca", "A configured reaction to a caca"),
+            ("A reaction to a caca from {name}", "A reaction to a caca from Pepa"),
+            ("A reaction to a caca", "A reaction to a caca"),
         ],
     )
     def test_it_reacts_to_a_caca_when_the_probability_hits(
