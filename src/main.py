@@ -4,6 +4,7 @@ import auth_token
 from actions import (
     award_a_caca,
     extract_cacas_from_updates,
+    spontaneous_caca_reaction,
     store_new_cacas,
     extract_commands_from_updates,
     execute_command,
@@ -25,6 +26,7 @@ def get_and_handle_updates(cacabot: Cacabot):
 
     for caca in cacas:
         award_a_caca.do(caca, cacabot)
+        spontaneous_caca_reaction.do(caca, cacabot)
 
     commands = extract_commands_from_updates.do(updates)
     for command in commands:
