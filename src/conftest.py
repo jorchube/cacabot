@@ -1,8 +1,14 @@
 import pytest
 import responses
+from actions import spontaneous_caca_reaction
 
 from cacabot import Cacabot
 from persistence.repository import Repository
+
+
+@pytest.fixture(autouse=True)
+def no_spontaneous_caca_reactions():
+    spontaneous_caca_reaction.REACTION_PROBABILITY = 0
 
 
 @pytest.fixture
