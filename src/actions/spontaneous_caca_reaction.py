@@ -3,7 +3,7 @@ from caca import Caca
 from cacabot import Cacabot
 
 
-REACTION_PROBABILITY = 0.05
+REACTION_PROBABILITY = 0.1
 REACTIONS = [
     "{name}... ¡Menudo montón de mierda!",
     "En ese chorongo hay calidad, {name}",
