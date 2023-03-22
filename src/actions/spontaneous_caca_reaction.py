@@ -20,6 +20,15 @@ REACTIONS = [
     "¿Hay derrape?",
     "Acuérdate de usar la escobilla {name}",
     "Ahora pesas medio kilo menos",
+    "Se han visto recién nacidos que pesaban menos",
+    "{name}, los castores pagarían millones por semejante tronco",
+    "¡Ugh! ¡Puaj!! ¡No puedo respirar!",
+    "¿Ha habido beso de Neptuno?",
+    "Me parece humillante que mi único propósito sea ser testigo de estas mierdas",
+    "Esa caca es tan gorda que te cuento dos",
+    "Ese ñordaco está para indultar",
+    "¡Si llegas a soltar eso en el campo se extinguen una o dos especies seguro!",
+    "Cuando tires de la cadena subirá el nivel del mar",
 ]
 
 
