@@ -1,0 +1,4 @@
+FROM docker.io/metabase/metabase:latest
+
+VOLUME /cacabot_app
+VOLUME /metabase.db
