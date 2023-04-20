@@ -1,14 +1,14 @@
 build-image:
-	bash ./metabase_container/build-image.sh
+	bash ./container/build-image.sh
 
 create-container: build-image
-	bash ./metabase_container/create-container.sh
+	bash ./container/create-container.sh
 
 start-container:
-	bash ./metabase_container/start-container.sh
+	bash ./container/start-container.sh
 
 stop-container:
-	bash ./metabase_container/stop-container.sh
+	bash ./container/stop-container.sh
 
 clean-environment:
-	bash ./metabase_container/clean.sh
+	bash ./container/clean.sh
