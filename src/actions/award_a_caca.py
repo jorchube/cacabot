@@ -8,6 +8,7 @@ AWARDED_CACAS = [
     {"number_of_cacas": 50, "trophy_image_path": "src/imgs/50cacas.png"},
     {"number_of_cacas": 100, "trophy_image_path": "src/imgs/100cacas.png"},
     {"number_of_cacas": 500, "trophy_image_path": "src/imgs/500cacas.png"},
+    {"number_of_cacas": 666, "trophy_image_path": "src/imgs/666cacas.png"},
     {"number_of_cacas": 1000, "trophy_image_path": "src/imgs/1000cacas.png"},
 ]
 
