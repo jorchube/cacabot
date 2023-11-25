@@ -21,6 +21,7 @@ class TestSpontaneousCacaReaction:
         test_bot,
         configured_reaction,
         expected_response,
+        null_ai_client,
     ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
@@ -68,10 +69,10 @@ class TestSpontaneousCacaReaction:
         spontaneous_caca_reaction.REACTION_PROBABILITY = 1
         spontaneous_caca_reaction.REACTIONS = [configured_reaction]
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)
 
     def test_it_does_not_react_to_a_caca_when_the_probability_does_not_hit(
-        self, mock_responses, auth_token, test_bot
+        self, mock_responses, auth_token, test_bot, null_ai_client
     ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
@@ -105,4 +106,4 @@ class TestSpontaneousCacaReaction:
         spontaneous_caca_reaction.REACTION_PROBABILITY = 0
         spontaneous_caca_reaction.REACTIONS = ["A configured reaction to a caca"]
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)

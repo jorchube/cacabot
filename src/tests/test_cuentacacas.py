@@ -7,7 +7,7 @@ from main import get_and_handle_updates
 @pytest.mark.usefixtures("in_memory_repository")
 class TestCuentacacas:
     def test_it_sends_nothing_when_there_are_no_results(
-        self, mock_responses, auth_token, test_bot
+        self, mock_responses, auth_token, test_bot, null_ai_client
     ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
@@ -43,10 +43,10 @@ class TestCuentacacas:
             },
         )
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)
 
     def test_it_sends_cuentacacas_command_response_when_there_are_results(
-        self, mock_responses, auth_token, test_bot
+        self, mock_responses, auth_token, test_bot, null_ai_client
     ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
@@ -115,10 +115,10 @@ class TestCuentacacas:
             },
         )
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)
 
     def test_it_sends_cuentacacas_command_response_when_there_are_results_for_several_users(
-        self, mock_responses, auth_token, test_bot
+        self, mock_responses, auth_token, test_bot, null_ai_client
     ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
@@ -228,10 +228,10 @@ class TestCuentacacas:
             },
         )
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)
 
     def test_it_sends_cuentacacas_command_response_when_there_are_results_ignoring_other_chats(
-        self, mock_responses, auth_token, test_bot
+        self, mock_responses, auth_token, test_bot, null_ai_client
     ):
         mock_responses.post(
             url=f"https://api.telegram.org/bot{auth_token}/getupdates",
@@ -319,4 +319,4 @@ class TestCuentacacas:
             },
         )
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)

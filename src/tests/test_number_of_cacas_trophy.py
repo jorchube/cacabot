@@ -24,7 +24,7 @@ class TestNumberOfCacasTrophy:
         return callback
 
     def test_it_does_not_send_a_trophy_for_a_non_awarded_number_of_cacas(
-        self, test_bot, create_cacas_for_member_in_chat, mock_responses, auth_token
+        self, test_bot, null_ai_client, create_cacas_for_member_in_chat, mock_responses, auth_token
     ):
         for update_id in range(37):
             create_cacas_for_member_in_chat(123, 987, update_id)
@@ -58,7 +58,7 @@ class TestNumberOfCacasTrophy:
             },
         )
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)
 
     @pytest.mark.parametrize(
         ("number_of_cacas", "expected_trophy_image_path"),
@@ -77,6 +77,7 @@ class TestNumberOfCacasTrophy:
         auth_token,
         number_of_cacas,
         expected_trophy_image_path,
+        null_ai_client
     ):
         for update_id in range(number_of_cacas - 1):
             create_cacas_for_member_in_chat(123, 987, update_id)
@@ -126,4 +127,4 @@ class TestNumberOfCacasTrophy:
                 },
             )
 
-        get_and_handle_updates(test_bot)
+        get_and_handle_updates(test_bot, null_ai_client)
