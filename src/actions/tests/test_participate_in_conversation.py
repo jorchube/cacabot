@@ -1,6 +1,7 @@
 
 from unittest import mock
 
+import pytest
 from freezegun import freeze_time
 
 from actions.participate_in_conversation import ParticipateInConversation
@@ -24,7 +25,7 @@ class TestParticipatInConversation:
             chat_member_id=678,
             chat_member_name="asdf"
         )
-        conversation_engine = ConversationEngine(ai_client=ai_client, botname="botname")
+        conversation_engine = ConversationEngine(ai_client=ai_client, botname=["botname"])
         ParticipateInConversation(cacabot=cacabot, conversation_engine=conversation_engine, participation_probability=1).do(conversation_message)
 
         ai_client.send.assert_called_once_with(
@@ -51,7 +52,7 @@ class TestParticipatInConversation:
             chat_member_name="asdf"
         )
 
-        conversation_engine = ConversationEngine(ai_client=ai_client, botname="botname")
+        conversation_engine = ConversationEngine(ai_client=ai_client, botname=["botname"])
         ParticipateInConversation(cacabot=cacabot, conversation_engine=conversation_engine, participation_probability=1).do(conversation_message)
 
         ai_client.send.assert_called_once_with(
@@ -61,7 +62,8 @@ class TestParticipatInConversation:
 
         cacabot.send_message_to_chat.assert_not_called()
 
-    def test_participates_when_mentioned(self):
+    @pytest.mark.parametrize("botname", ["name1", "name2"])
+    def test_participates_when_mentioned(self, botname):
         ai_client = mock.create_autospec(AIClient)
         ai_client.send.return_value = AIClientResponse(response_message="a response", conversation_context=[1, 2])
 
@@ -73,10 +75,10 @@ class TestParticipatInConversation:
             message="A conversation message @botname",
             chat_member_id=678,
             chat_member_name="asdf",
-            mention="botname"
+            mention=botname
         )
 
-        conversation_engine = ConversationEngine(ai_client=ai_client, botname="botname")
+        conversation_engine = ConversationEngine(ai_client=ai_client, botname=["name1", "name2"])
         ParticipateInConversation(cacabot=cacabot, conversation_engine=conversation_engine, participation_probability=0).do(conversation_message)
 
         ai_client.send.assert_called_once_with(
@@ -118,7 +120,7 @@ class TestParticipatInConversation:
             chat_member_name="asdf",
         )
 
-        conversation_engine = ConversationEngine(ai_client=ai_client, botname="botname")
+        conversation_engine = ConversationEngine(ai_client=ai_client, botname=["botname"])
 
         with freeze_time("2023-06-06T16:00:00"):
             ParticipateInConversation(cacabot=cacabot, conversation_engine=conversation_engine, participation_probability=1).do(conversation_message_1)

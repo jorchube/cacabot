@@ -60,7 +60,7 @@ def main():
     bot_auth_token = auth_token.get(AUTH_TOKEN_FILE)
     cacabot = Cacabot(bot_auth_token)
     ai_client = AIClient("http://192.168.1.136", 11434)
-    conversation_engine = ConversationEngine(ai_client=ai_client, botname="hecesquiel_bot")
+    conversation_engine = ConversationEngine(ai_client=ai_client, botname=["hecesquiel_bot", "cacabot"])
     Repository.initialize()
 
     run_loop(cacabot, conversation_engine)

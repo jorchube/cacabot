@@ -19,9 +19,9 @@ class _ConversationContext:
         return self._token
 
 class ConversationEngine:
-    def __init__(self, ai_client: AIClient, botname: str) -> None:
+    def __init__(self, ai_client: AIClient, botname: list[str]) -> None:
         self._ai_client = ai_client
-        self._botname = botname
+        self._botnames = botname
         self._current_context = None
 
     def generate_response(self, message: str) -> str:
@@ -38,7 +38,7 @@ class ConversationEngine:
         return response.response_message
 
     def is_botname(self, mentioned_name: str):
-        return self._botname == mentioned_name
+        return mentioned_name in self._botnames
 
     def context_is_valid(self):
         return self._current_context.is_valid()
