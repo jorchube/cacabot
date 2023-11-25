@@ -20,7 +20,7 @@ class AIClient:
         }
 
         response = requests.post(
-            url=f"{self._url}:{self._port}",
+            url=f"{self._url}:{self._port}/api/generate",
             json=body
         )
 
