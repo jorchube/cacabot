@@ -58,6 +58,7 @@ def main():
 
     bot_auth_token = auth_token.get(AUTH_TOKEN_FILE)
     cacabot = Cacabot(bot_auth_token)
+    ai_client = AIClient("http://192.168.1.136", 11434)
     Repository.initialize()
 
     run_loop(cacabot, ai_client)
