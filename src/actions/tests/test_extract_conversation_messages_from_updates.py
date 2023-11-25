@@ -106,3 +106,66 @@ class TestExtractConversationUpdatesFromMessages:
 
         conversation_message = conversation_messages[1]
         assert conversation_message.message == "Conversation message 2"
+
+
+    def test_gets_conversation_message_with_mention_from_updates(self):
+        updates = [
+            {
+                "update_id": 803079925,
+                "message": {
+                    "message_id": 59,
+                    "from": {
+                        "id": 344365000,
+                        "is_bot": False,
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "language_code": "en",
+                    },
+                    "chat": {
+                        "id": 344365000,
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "type": "private",
+                    },
+                    "date": 1677426214,
+                    "text": "Conversation message 1 @mentioned_username",
+                    "entities": [
+                        {
+                            "offset": 0, "length": 5, "type": "mention",
+                            "user": { "username": "@mentioned_username" }
+                        }
+                    ],
+                },
+            },
+            {
+                "update_id": 803079925,
+                "message": {
+                    "message_id": 59,
+                    "from": {
+                        "id": 344365000,
+                        "is_bot": False,
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "language_code": "en",
+                    },
+                    "chat": {
+                        "id": 344365000,
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "type": "private",
+                    },
+                    "date": 1677426214,
+                    "text": "Conversation message 2",
+                },
+            },
+        ]
+
+        conversation_messages = extract_conversation_messages_from_updates.do(updates)
+
+        conversation_message = conversation_messages[0]
+        assert conversation_message.message == "Conversation message 1 @mentioned_username"
+        assert conversation_message.mention == "mentioned_username"
+
+        conversation_message = conversation_messages[1]
+        assert conversation_message.message == "Conversation message 2"
+        assert conversation_message.mention == None

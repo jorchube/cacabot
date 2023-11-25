@@ -8,3 +8,4 @@ class ConversationMessage:
     message: str
     chat_member_id: int
     chat_member_name: str
+    mention: str = None
