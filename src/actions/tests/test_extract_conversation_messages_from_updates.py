@@ -132,7 +132,6 @@ class TestExtractConversationUpdatesFromMessages:
                     "entities": [
                         {
                             "offset": 0, "length": 5, "type": "mention",
-                            "user": { "username": "@mentioned_username" }
                         }
                     ],
                 },
