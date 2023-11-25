@@ -5,7 +5,7 @@ from ai_client import AIClient, AIClientException
 from cacabot import Cacabot
 from conversation_message import ConversationMessage
 
-PARTICIPATION_PROBABILITY = 0.3
+PARTICIPATION_PROBABILITY = 0.5
 
 class ParticipateInConversation:
     def __init__(self, cacabot: Cacabot, ai_client = AIClient, participation_probability: int=PARTICIPATION_PROBABILITY) -> None:
