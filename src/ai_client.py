@@ -24,7 +24,7 @@ class AIClient:
             json=body
         )
 
-        if response.ok() is False:
+        if response.ok is False:
             raise AIClientException(message=f"{response}")
 
         return response.json()["response"]
