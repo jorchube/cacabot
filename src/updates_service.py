@@ -4,5 +4,7 @@ class UpdatesService:
             return False
         if "entities" in update["message"]:
             return False
+        if update["message"]["text"] == "💩":
+            return False
 
         return True

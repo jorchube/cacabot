@@ -35,6 +35,27 @@ class TestExtractConversationUpdatesFromMessages:
                 },
             },
             {
+                "update_id": 803079925,
+                "message": {
+                    "message_id": 59,
+                    "from": {
+                        "id": 344365000,
+                        "is_bot": False,
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "language_code": "en",
+                    },
+                    "chat": {
+                        "id": 344365000,
+                        "first_name": "John",
+                        "last_name": "Doe",
+                        "type": "private",
+                    },
+                    "date": 1677426214,
+                    "text": "Conversation message 1",
+                },
+            },
+            {
                 "update_id": 803079929,
                 "message": {
                     "message_id": 49,
@@ -52,7 +73,7 @@ class TestExtractConversationUpdatesFromMessages:
                         "type": "private",
                     },
                     "date": 1677426214,
-                    "text": "Conversation message 1",
+                    "text": "💩",
                 },
             },
             {
