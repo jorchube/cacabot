@@ -3,6 +3,9 @@ from datetime import datetime, timedelta
 from ai_client import AIClient, AIClientException
 
 
+CONVERSATION_ENGAGEMENT_TIMEOUT_MINUTES = 3
+
+
 class ConversationEngineError(Exception):
     pass
 
@@ -10,7 +13,9 @@ class ConversationEngineError(Exception):
 class _ConversationContext:
     def __init__(self, token: list[int]) -> None:
         self._token = token
-        self._valid_until = datetime.now() + timedelta(minutes=5)
+        self._valid_until = datetime.now() + timedelta(
+            minutes=CONVERSATION_ENGAGEMENT_TIMEOUT_MINUTES
+        )
 
     def is_valid(self):
         return self._valid_until >= datetime.now()
