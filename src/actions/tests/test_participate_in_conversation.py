@@ -107,7 +107,7 @@ class TestParticipatInConversation:
             chat_id=12345, message="a response"
         )
 
-    def test_continues_conversation_within_5_minutes_from_an_intervention(self):
+    def test_continues_conversation_within_3_minutes_from_an_intervention(self):
         ai_client = mock.create_autospec(AIClient)
         ai_client.send.return_value = AIClientResponse(
             response_message="a response", conversation_context=[1, 2]
@@ -149,19 +149,21 @@ class TestParticipatInConversation:
                 participation_probability=1,
             ).do(conversation_message_1)
 
-        with freeze_time("2023-06-06T16:04:55"):
+        with freeze_time("2023-06-06T16:02:59"):
             ParticipateInConversation(
                 cacabot=cacabot,
                 conversation_engine=conversation_engine,
                 participation_probability=0,
             ).do(conversation_message_2)
 
-        with freeze_time("2023-06-06T16:09:56"):
+        with freeze_time("2023-06-06T16:06:00"):
             ParticipateInConversation(
                 cacabot=cacabot,
                 conversation_engine=conversation_engine,
                 participation_probability=0,
             ).do(conversation_message_3)
+
+        assert ai_client.send.call_count == 2
 
         ai_client.send.assert_has_calls(
             [
