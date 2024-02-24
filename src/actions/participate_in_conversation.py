@@ -5,7 +5,7 @@ from cacabot import Cacabot
 from conversation_engine import ConversationEngine, ConversationEngineError
 from conversation_message import ConversationMessage
 
-PARTICIPATION_PROBABILITY = 0.5
+PARTICIPATION_PROBABILITY = 0.0
 
 
 class ParticipateInConversation:
