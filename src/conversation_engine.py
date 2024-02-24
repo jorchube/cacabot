@@ -18,6 +18,7 @@ class _ConversationContext:
     def get(self):
         return self._token
 
+
 class ConversationEngine:
     def __init__(self, ai_client: AIClient, botname: list[str]) -> None:
         self._ai_client = ai_client
@@ -27,14 +28,16 @@ class ConversationEngine:
     def generate_response(self, message: str) -> str:
         context = None
         if self._current_context and self._current_context.is_valid():
-            context=self._current_context.get()
+            context = self._current_context.get()
 
         try:
             response = self._ai_client.send(text=message, context=context)
         except AIClientException as error:
             raise ConversationEngineError from error
 
-        self._current_context = _ConversationContext(token=response.conversation_context)
+        self._current_context = _ConversationContext(
+            token=response.conversation_context
+        )
         return response.response_message
 
     def is_botname(self, mentioned_name: str):
