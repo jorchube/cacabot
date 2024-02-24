@@ -5,10 +5,16 @@ from cacabot import Cacabot
 from conversation_engine import ConversationEngine, ConversationEngineError
 from conversation_message import ConversationMessage
 
-PARTICIPATION_PROBABILITY = 0.5
+PARTICIPATION_PROBABILITY = 0.0
+
 
 class ParticipateInConversation:
-    def __init__(self, cacabot: Cacabot, conversation_engine: ConversationEngine, participation_probability: int=PARTICIPATION_PROBABILITY) -> None:
+    def __init__(
+        self,
+        cacabot: Cacabot,
+        conversation_engine: ConversationEngine,
+        participation_probability: int = PARTICIPATION_PROBABILITY,
+    ) -> None:
         self._conversation_engine = conversation_engine
         self._cacabot = cacabot
         self._participation_probability = participation_probability
@@ -31,12 +37,13 @@ class ParticipateInConversation:
 
     def _participate(self, conversation_message):
         try:
-            response = self._conversation_engine.generate_response(message=conversation_message.message)
+            response = self._conversation_engine.generate_response(
+                message=conversation_message.message
+            )
         except ConversationEngineError as error:
             logging.error(f"Failed to participate in conversation: {error}")
             return
 
         self._cacabot.send_message_to_chat(
-            chat_id=conversation_message.chat_id,
-            message=response
+            chat_id=conversation_message.chat_id, message=response
         )
