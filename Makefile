@@ -27,3 +27,13 @@ clean-environment:
 
 run:
 	python src/main.py
+
+start-devcontainer:
+	./scripts/start-devcontainer.sh
+
+nvim-devcontainer: start-devcontainer
+	./scripts/exec-in-devcontainer.sh nvim
+
+bash-devcontainer: start-devcontainer
+	./scripts/exec-in-devcontainer.sh bash
+

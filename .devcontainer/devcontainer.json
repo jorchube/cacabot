@@ -1,21 +1,16 @@
 {
-	"name": "python-devel",
-
+	"name": "cacabot-devcontainer",
+	"runArgs": ["--name", "cacabot-devcontainer"],
 	"image": "quay.io/fedora/fedora:latest",
-
-	"shutdownAction": "stopContainer",
-
-	"postCreateCommand": "bash .devcontainer/on_create.sh",
-
-	"remoteUser": "root",
-
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"ms-python.isort"
-			]
-		}
-	}
+	"remoteUser": "devuser",
+	"features": {
+		"./dev-user": {},
+		"./install-packages": {},
+	},
+	"onCreateCommand": "bash .devcontainer/on-create.sh",
+	"mounts": [
+		"source=/var/home/jorchube/.config/nvim,target=/home/devuser/.config/nvim,type=bind,consistency=cached",
+		"source=/var/home/jorchube/.ssh,target=/home/devuser/.ssh,type=bind,consistency=cached"
+	],
+	
 }

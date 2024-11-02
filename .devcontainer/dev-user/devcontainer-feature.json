@@ -1,0 +1,22 @@
+{
+	"id": "dev-user",
+	"version": "1.0.0",
+	"name": "Adds user to devcontainer",
+	"options": {
+		"username": {
+			"type": "string",
+			"description": "The username to add to the devcontainer",
+			"default": "devuser"
+		},
+		"user_id": {
+			"type": "string",
+			"description": "The user id to add to the devcontainer",
+			"default": "1000"
+		},
+		"group_id": {
+			"type": "string",
+			"description": "The group id to add to the devcontainer",
+			"default": "1000"
+		}
+	}
+}
