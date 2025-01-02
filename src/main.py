@@ -1,11 +1,17 @@
 import logging
+from time import sleep
 import traceback
 
 import auth_token
-from actions import (award_a_caca, execute_command, extract_cacas_from_updates,
-                     extract_commands_from_updates,
-                     extract_conversation_messages_from_updates,
-                     spontaneous_caca_reaction, store_new_cacas)
+from actions import (
+    award_a_caca,
+    execute_command,
+    extract_cacas_from_updates,
+    extract_commands_from_updates,
+    extract_conversation_messages_from_updates,
+    spontaneous_caca_reaction,
+    store_new_cacas,
+)
 from actions.participate_in_conversation import ParticipateInConversation
 from ai_client import AIClient
 from cacabot import Cacabot
@@ -38,7 +44,9 @@ def get_and_handle_updates(cacabot: Cacabot, conversation_engine: ConversationEn
 
     conversation_messages = extract_conversation_messages_from_updates.do(updates)
     for conversation_message in conversation_messages:
-        ParticipateInConversation(cacabot=cacabot, conversation_engine=conversation_engine).do(conversation_message)
+        ParticipateInConversation(
+            cacabot=cacabot, conversation_engine=conversation_engine
+        ).do(conversation_message)
 
 
 def run_loop(cacabot: Cacabot, conversation_engine: ConversationEngine):
@@ -48,6 +56,7 @@ def run_loop(cacabot: Cacabot, conversation_engine: ConversationEngine):
         except Exception as e:
             backtrace = traceback.format_exc()
             logging.error(backtrace)
+            sleep(15.0)
 
 
 def main():
@@ -60,7 +69,9 @@ def main():
     bot_auth_token = auth_token.get(AUTH_TOKEN_FILE)
     cacabot = Cacabot(bot_auth_token)
     ai_client = AIClient("http://192.168.1.136", 11434)
-    conversation_engine = ConversationEngine(ai_client=ai_client, botname=["hecesquiel_bot", "cacabot"])
+    conversation_engine = ConversationEngine(
+        ai_client=ai_client, botname=["hecesquiel_bot", "cacabot"]
+    )
     Repository.initialize()
 
     run_loop(cacabot, conversation_engine)
